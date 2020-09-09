@@ -4,11 +4,9 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.jahia.api.Constants;
 import org.jahia.modules.augmentedsearch.ESNotConnectedException;
 import org.jahia.modules.augmentedsearch.graphql.EmptySearchException;
-import org.jahia.modules.augmentedsearch.graphql.extensions.models.GqlSearchResponse;
 import org.jahia.modules.augmentedsearch.graphql.extensions.models.inputs.GqlSearchInput;
 import org.jahia.modules.augmentedsearch.graphql.extensions.models.inputs.filters.GqlFilter;
 import org.jahia.modules.augmentedsearch.graphql.extensions.models.inputs.filters.GqlFilterNodeType;
-import org.jahia.modules.augmentedsearch.graphql.extensions.models.inputs.sort.GqlSort;
 import org.jahia.modules.augmentedsearch.service.AugmentedSearchService;
 import org.jahia.modules.graphql.provider.dxm.node.NodeQueryExtensions;
 import org.jahia.taglibs.AbstractJahiaTag;
@@ -53,9 +51,11 @@ public class SearchTag extends AbstractJahiaTag {
                                                    query);
                     pageContext.getOut().print(message);
                     pageContext.setAttribute("asResults",response.getHits());
-                } catch (ESNotConnectedException | EmptySearchException | InterruptedException | RepositoryException | IOException e) {
-                    logger.error(e.getMessage(), e);
+                } catch (ESNotConnectedException | EmptySearchException | RepositoryException | IOException e) {
                     throw new JspException(e);
+                } catch (InterruptedException e) {
+                    logger.error(e.getMessage(), e);
+                    Thread.currentThread().interrupt();
                 }
             }
             return EVAL_BODY_INCLUDE;
