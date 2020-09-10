@@ -13,6 +13,7 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<%--@elvariable id="asResults" type="java.util.List<org.jahia.modules.augmentedsearch.graphql.extensions.models.GqlSearchHit>"--%>
 <template:addResources type="css" resources="css/prism.css"/>
 <template:addResources type="javascript" resources="javascript/prism.js"/>
 <c:if test="${renderContext.editMode}">
@@ -21,8 +22,8 @@
 
 <as:search q="ceo"/>
 <ol>
-    <c:forEach items="${asResults.hits}" var="hit">
-        <li>${hit.fields["jgql:displayableName"].value}</li>
+    <c:forEach items="${asResults}" var="hit">
+        <li>${hit.displayableName}</li>
     </c:forEach>
 </ol>
 
