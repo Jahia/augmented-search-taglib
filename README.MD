@@ -1,6 +1,11 @@
-## Augmented Search Taglib Example
+<a href="https://www.jahia.com/">
+    <img src="https://www.jahia.com/modules/jahiacom-templates/images/jahia-3x.png" alt="Jahia logo" title="Jahia" align="right" height="60" />
+</a>
 
-This module shows an example of taglib using Augmented Search OSGI Service
+Augmented Search Taglib Example
+================
+
+This module provides an example of taglib using Augmented Search OSGI Service
 
 There are two tags
 
