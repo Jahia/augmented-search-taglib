@@ -52,7 +52,7 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.0.0.0</version>
+        <version>7.3.5.0</version>
     </parent>
     <artifactId>augmented-search-taglib</artifactId>
     <name>Augmented Search Taglib</name>
@@ -66,8 +66,6 @@
     </scm>
 
     <properties>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
-        <jahia-module-signature>MCwCFFyjA62qF+4njBO2022ZQNNfVAAOAhQ4tXLH1r/rWVY00R88JLl5wEudng==</jahia-module-signature>
         <jahia-depends>augmented-search</jahia-depends>
     </properties>
 
@@ -125,14 +123,14 @@
     <dependencies>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.3</version>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>augmented-search</artifactId>
-            <version>2.1.2-SNAPSHOT</version>
+            <version>1.5.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

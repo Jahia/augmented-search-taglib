@@ -13,7 +13,7 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<%--@elvariable id="asResults" type="java.util.List<org.jahia.modules.augmentedsearch.graphql.extensions.models.GqlSearchHit>"--%>
+<%--@elvariable id="asResults" type="java.util.List<org.jahia.modules.augmentedsearch.graphql.extensions.models.GqlSearchHitV2>"--%>
 <template:addResources type="css" resources="css/prism.css"/>
 <template:addResources type="javascript" resources="javascript/prism.js"/>
 <c:if test="${renderContext.editMode}">
@@ -23,7 +23,7 @@
 <as:search q="ceo"/>
 <ol>
     <c:forEach items="${asResults}" var="hit">
-        <li>${hit.displayableName}</li>
+        <li>${hit.displayableName} created by ${as:getProperty(hit,"jgql:createdBy")} modified by ${as:getProperty(hit,"jgql:lastModifiedBy")}</li>
     </c:forEach>
 </ol>
 

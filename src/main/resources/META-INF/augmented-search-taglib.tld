@@ -31,4 +31,11 @@
         <tag-class>org.jahia.modules.augmentedsearch.taglib.JSONTag</tag-class>
         <body-content>empty</body-content>
     </tag>
+    <function>
+        <name>getProperty</name>
+        <function-class>org.jahia.modules.augmentedsearch.taglib.Functions</function-class>
+        <function-signature>java.lang.String
+            getProperty(org.jahia.modules.augmentedsearch.graphql.extensions.models.GqlSearchHitV2,java.lang.String)
+        </function-signature>
+    </function>
 </taglib>
