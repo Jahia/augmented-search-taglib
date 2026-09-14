@@ -23,7 +23,13 @@ public class JSONTag extends AbstractJahiaTag {
             if (searchReference != null) {
                 AugmentedSearchService searchService = bundleContext.getService(searchReference);
                 try {
-                    pageContext.getOut().print(searchService.convertToJSONForIndexation(getRenderContext().getMainResource().getNode()));
+                    // The serialized JSON carries node property VALUES, which are author-
+                    // controlled and therefore untrusted. It is written into HTML element
+                    // content, so it is escaped here. The <pre><code> wrapper in the view
+                    // preserves whitespace but does not suppress markup, so it is not a
+                    // substitute for this call.
+                    pageContext.getOut().print(HtmlText.escape(
+                            searchService.convertToJSONForIndexation(getRenderContext().getMainResource().getNode())));
                 } catch (IOException | RepositoryException e) {
                     logger.error(e.getMessage(), e);
                     throw new JspException(e);

@@ -23,12 +23,18 @@
 <as:search q="ceo"/>
 <ol>
     <c:forEach items="${asResults}" var="hit">
-        <li>${hit.displayableName}</li>
+        <%-- Search hits carry author-controlled content, so the name is escaped for the
+             HTML element content it is written into. --%>
+        <li>${fn:escapeXml(hit.displayableName)}</li>
     </c:forEach>
 </ol>
 
 
-<p>Rendering main resource ${renderContext.mainResource.node.path} JSON serialization from Augmented Search</p>
+<%-- A JCR node name may contain characters that are significant in HTML, so the path is
+     escaped like every other value that did not originate in this template. --%>
+<p>Rendering main resource ${fn:escapeXml(renderContext.mainResource.node.path)} JSON serialization from Augmented Search</p>
+<%-- <pre> and <code> preserve whitespace; they do NOT suppress markup. The escaping that
+     makes this block safe is done by the tag itself, not by these elements. --%>
 <pre>
 <code class="language-json">
 <as:toJSON/>

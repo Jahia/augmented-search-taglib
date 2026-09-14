@@ -38,7 +38,10 @@ public class SearchTag extends AbstractJahiaTag {
                                                    response.getTook(),
                                                    response.getTotalHits(),
                                                    query);
-                    pageContext.getOut().print(message);
+                    // The message embeds the caller-supplied query, which reaches this tag
+                    // from the JSP's q attribute and is commonly wired to a request parameter.
+                    // It is written into HTML element content, so it is escaped here.
+                    pageContext.getOut().print(HtmlText.escape(message));
                     pageContext.setAttribute("asResults", response.getHits());
                 } catch (EmptySearchException | RepositoryException | IOException e) {
                     throw new JspException(e);
